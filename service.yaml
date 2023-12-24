@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hw2k8
+spec:
+  type: LoadBalancer
+  selector:
+    app: hw2k8-fbf7b6b9b-q7p5r
+  ports:
+    - protocol: TCP
+      port: 6443
+      targetPort: 6443

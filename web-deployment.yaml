@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw2k8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+      volumes:
+      - name: store-volume
+        persistentVolumeClaim:
+          claimName: pvc-postgres
+      containers:
+        - name: web-container
+          image: achhonker/hw2todo
+          volumeMounts:
+        - name: store-volume
+          mountPath: /Data
+          ports:
+            - containerPort: 3000
